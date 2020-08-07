@@ -108,7 +108,7 @@ const episodesData =[
             href: 'http://api.tvmaze.com/episodes/578666'
           }
         }
-      },
+      }
 ]
 //what is the testing philosophy/framework we follow in our tests?
 //arrange, act, and assert
