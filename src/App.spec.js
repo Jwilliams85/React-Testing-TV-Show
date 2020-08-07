@@ -2,7 +2,7 @@ import React from 'react'
 import { render, fireEvent, waitFor, queryAllByTestId } from '@testing-library/react'
 import { fetchShow as mockFetchEpisodes} from './api/fetchShow'
 import App from './App';
-
+import userEvent from '@testing-library/user-event'
 
 jest.mock("./api/fetchShow"); 
 console.log(mockFetchEpisodes);
@@ -127,8 +127,8 @@ test ("successfully renders data from api", async () => {
     //const heading = getByRole ('heading', { name: /Fetching data/i})
 
 
-    //fireEvent.click();
-findByText(/fetching data/i)
+  // userEvent.click(button);
+  await findByText(/fetching data/i)
 
     
     //click on the Select Season button- fetching message is rendered 
@@ -142,5 +142,7 @@ findByText(/fetching data/i)
     await waitFor(() => {
         expect(getAllByTestId(/episode/)).toHaveLength(5)
      }) 
+
+     expect(mockFetchEpisodes).toHaveBeenCalled();
 
 })
