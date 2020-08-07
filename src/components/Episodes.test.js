@@ -2,9 +2,6 @@ import React from 'react';
 import { render } from '@testing-library/react'
 import Episodes from './Episodes'
 
-//what is the testing philosophy/framework we follow in our tests?
-//arrange, act, and assert
-test("re-render correctly with list of seasons", () => { 
 
 const episodesData =[
     {
@@ -113,17 +110,41 @@ const episodesData =[
         }
       },
 ]
+//what is the testing philosophy/framework we follow in our tests?
+//arrange, act, and assert
+test("re-render correctly with list of seasons", () => { 
+//install Prittier so vs code  will automatically convert from json to js
+
 
 //arrange (render the component and set up monck data)
-const { rerender } = render(<Episodes episodes={[]} />)
+const { rerender, getAllByTestId } = render(<Episodes episodes={[]} />)
 
 //act (re-render the component with episodes data passes in)
 rerender(<Episodes episodes = {episodesData}/>)
-//const episodes = getAllByTestId(/episode/i); //getAll functions returns an array if if finds multiple elements
-
+const episodes = getAllByTestId(/episode/i); //getAll functions returns an array if if finds multiple elements
+console.log (episodes);
 //assert 
 
-//expect (episodes).toHaveLength(4);
+expect (episodes).toHaveLength(5);
+
+});
+
+test("displays an error message if an error is passes in", () => {
+//render the component with no error (don't forget to pass in the episodes props)
+//assert that there is no error message displayed 
+//re-render the component with an error passed down 
+//assert that it now renders the error message 
+
+// const { rerender, queryByText, getByText } =render(<Episodes episodes ={[]} />);
+// //act 
+// const errors =queryByText(/some error message/i);
+// expect(errors).toBeNull();
+// rerender(<Episodes episodes={[]} error="some error message" />)
+
+// const error = getByText(/some error message/i);
+// expect(error).toBeInTheDocument();
+
 
 })
 
+//which query should I use? test cheat sheet, throw means failed test 
